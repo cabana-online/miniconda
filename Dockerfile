@@ -2,7 +2,7 @@ FROM cabanaonline/ubuntu:1.0
 
 # Metadata
 LABEL base.image="cabanaonline/ubuntu"
-LABEL description="A mini conda container"
+LABEL description="A mini conda container with bioconda"
 LABEL maintainer="Alejandro Madrigal Leiva"
 LABEL maintainer.email="me@alemadlei.tech"
 
@@ -17,6 +17,12 @@ RUN \
 
 # Adds the package to the path for easy access.
 ENV PATH="${HOME}/tools/miniconda3/bin:${PATH}"
+
+# Adds bioconda channels.
+RUN \
+    conda config --add channels defaults && \
+    conda config --add channels bioconda && \
+    conda config --add channels conda-forge;
 
 # Entrypoint to keep the container running.
 ENTRYPOINT ["tail", "-f", "/dev/null"]
