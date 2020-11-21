@@ -11,12 +11,12 @@ ENV HOME /home/$USER
 
 RUN \
     cd /tmp && \
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/tools/miniconda3 && \
-    rm -f Miniconda3-latest-Linux-x86_64.sh;
+    wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh  && \
+    bash Miniconda2-latest-Linux-x86_64.sh -b -p $HOME/tools/miniconda2 && \
+    rm -f Miniconda2-latest-Linux-x86_64.sh;
 
 # Adds the package to the path for easy access.
-ENV PATH="${HOME}/tools/miniconda3/bin:${PATH}"
+ENV PATH="${HOME}/tools/miniconda2/bin:${PATH}"
 
 # Adds bioconda channels.
 RUN \
