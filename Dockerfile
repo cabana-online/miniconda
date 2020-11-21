@@ -12,7 +12,12 @@ ENV HOME /home/$USER
 RUN \
     cd /tmp && \
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
-    bash Miniconda3-latest-Linux-x86_64.sh -b
+    bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/tools/miniconda3 && \
+    rm -f Miniconda3-latest-Linux-x86_64.sh;
 
-# Changes work user.
-USER cabana
+# Adds the package to the path for easy access.
+ENV PATH="${HOME}/tools/miniconda3/bin:${PATH}"
+
+# Entrypoint to keep the container running.
+ENTRYPOINT ["tail", "-f", "/dev/null"]
+
